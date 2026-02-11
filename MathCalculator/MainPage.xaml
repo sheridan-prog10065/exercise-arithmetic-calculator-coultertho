@@ -14,10 +14,14 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            
+            <!--Left Operand-->
             <VerticalStackLayout Grid.Column="0">
                 <Label Text="Left:" FontSize="14" />
                 <Entry x:Name="_txtLeftOp" Margin="0, 6, 10, 0"/>
             </VerticalStackLayout>
+            
+            <!--Operation Picker-->
             <Picker x:Name="_pckOperand"
                     Grid.Column="1"
                     HorizontalOptions="Center"
@@ -35,17 +39,35 @@
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>  
+            
+            <!--Right Operand-->
             <VerticalStackLayout Grid.Column="2" Margin="10, 0, 0, 0">
                 <Label Text="Right:" FontSize="14"/>
                 <Entry x:Name="_txtRightOp" Margin="0, 6, 0, 0"/>
             </VerticalStackLayout>
         </Grid>
+        
+        <!--Calculate Button-->
         <Button Text="Calculate" 
                 WidthRequest="200"
-                Margin="20, 0" FontSize="17" VerticalOptions="Center"/>
+                Margin="20, 0" FontSize="17" VerticalOptions="Center"
+                Clicked="OnCalculate"/>
+        
+        <!--Expression Display-->
         <VerticalStackLayout HorizontalOptions="Center">
             <Label Text="Arithmetic Expression" FontSize="17"/>
             <Entry x:Name="_txtMathExp" FontSize="17" IsReadOnly="True"/>
+        </VerticalStackLayout>
+        
+        <!--History List-->
+        <VerticalStackLayout Margin="20" Spacing="10">
+            <Label Text="Expression History:"/>
+
+            <Border StrokeThickness="2">
+                <CollectionView x:Name="_lstExpHistory"
+                                HeightRequest="350"
+                                Margin="10"/>
+            </Border>
         </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
