@@ -1,12 +1,24 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace MathCalculator;
 
 public partial class MainPage : ContentPage
 {
+    /// <summary>
+    /// field variable to remember expression history
+    /// </summary>
+    private ObservableCollection<string> _expList;
+
     public MainPage()
     {
         InitializeComponent();
+
+        //initialize field variables
+        _expList = new ObservableCollection<string>();
+
+        //bind collection view for history with list
+        _lstExpHistory.ItemsSource = _expList;
     }
 
     /// <summary>
@@ -31,6 +43,9 @@ public partial class MainPage : ContentPage
         //Display the expression
         string expression = $"{leftOperand} {op} {rightOperand} = {result}";
         _txtMathExp.Text = expression;
+
+        //remember calculated expression history
+        _expList.Add(expression);
     }
 
     /// <summary>
